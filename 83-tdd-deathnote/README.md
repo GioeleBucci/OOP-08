@@ -27,7 +27,7 @@ Use the *Test-Driven Development (TDD)* methodology to develop the following.
       * verify that the cause of death has not been changed
    5. Only if the cause of death is written within the next 6 seconds and 40 milliseconds of writing the death's details, it will happen.
       * check that writing the death details before writing a name throws the correct exception
-      * write the name of a human in the notebook
+      * write the name of a human in the notebook // TODO ASK ABOUT THESE 2 
       * verify that the details of the death are currently empty
       * set the details of the death to "ran for too long"
       * verify that death details have been set correctly (returned true, and the details are indeed "ran for too long")
