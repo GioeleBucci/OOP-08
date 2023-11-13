@@ -42,7 +42,7 @@ public class DeathNoteImpl implements DeathNote {
 
   @Override
   public void writeName(final String name) {
-    Objects.requireNonNull(name,"name cannot be null");
+    Objects.requireNonNull(name, "name cannot be null");
     latestName = name;
     data.put(latestName, new Death());
     timer.reset();
@@ -74,22 +74,22 @@ public class DeathNoteImpl implements DeathNote {
     return true;
   }
 
-  @Override
-  public String getDeathCause(final String name) {
+  private Death correspondingDeath(final String name) {
     final Death death = data.get(name);
     if (death == null) {
       throw new IllegalArgumentException("The name " + name + " is not in the deathnote");
     }
-    return death.cause;
+    return death;
+  }
+
+  @Override
+  public String getDeathCause(final String name) {
+    return correspondingDeath(name).cause;
   }
 
   @Override
   public String getDeathDetails(String name) {
-    final Death death = data.get(name);
-    if (death == null) {
-      throw new IllegalArgumentException("The name " + name + " is not in the deathnote");
-    }
-    return death.details;
+    return correspondingDeath(name).details;
   }
 
   @Override
