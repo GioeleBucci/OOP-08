@@ -14,21 +14,18 @@ public class TimerImpl implements Timer {
   }
 
   @Override
-  public long stop() {
-    if (!isRunning) {
-      throw new IllegalStateException("timer has already stopped");
-    }
-    isRunning = false;
-    long endTime = System.currentTimeMillis();
-    return endTime - startTime;
-  }
-
-  @Override
   public long partial() {
     if (!isRunning) {
       throw new IllegalStateException("timer is not running");
     }
     long endTime = System.currentTimeMillis();
     return endTime - startTime;
+  }
+
+  @Override
+  public long stop() {
+    long out = partial();
+    isRunning = false;
+    return out;
   }
 }

@@ -3,6 +3,7 @@ package it.unibo.deathnote.impl;
 import it.unibo.deathnote.api.DeathNote;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class DeathNoteImpl implements DeathNote {
 
@@ -14,16 +15,8 @@ public class DeathNoteImpl implements DeathNote {
 
     private String details = "";
 
-    public String getCause() {
-      return cause;
-    }
-
     public void setCause(final String cause) {
       this.cause = cause;
-    }
-
-    public String getDetails() {
-      return details;
     }
 
     public void setDetails(final String details) {
@@ -49,9 +42,7 @@ public class DeathNoteImpl implements DeathNote {
 
   @Override
   public void writeName(final String name) {
-    if (name == null) {
-      throw new NullPointerException("name cannot be null");
-    }
+    Objects.requireNonNull(name,"name cannot be null");
     latestName = name;
     data.put(latestName, new Death());
     timer.reset();
@@ -105,5 +96,4 @@ public class DeathNoteImpl implements DeathNote {
   public boolean isNameWritten(String name) {
     return data.containsKey(name);
   }
-
 }

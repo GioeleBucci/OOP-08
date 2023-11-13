@@ -2,7 +2,7 @@ package it.unibo.deathnote.api;
 
 public interface Timer {
   /**
-   * Re-starts the timer.
+   * Starts (or restarts) the timer.
    */
   void reset();
 
@@ -15,8 +15,9 @@ public interface Timer {
   long stop();
 
   /**
-   * Returns time elapsed since the timer started without stopping it
+   * Take a partial time. Does not stop the timer. 
    * 
+   * @return the time elapsed (in milliseconds) since start() was called
    * @throws IllegalStateException if the timer is not running.
    */
   long partial();
